@@ -62,12 +62,17 @@ public class GameEventSystem
         {
             // TODO: GOLD
         }
+        else if (evt is PlantAdded plantAdded)
+        {
+            SetGachaResultUI(plantAdded.PlantId);
+            ui.GachaResultUI.SetActive(true);
+        }
     }
 
     private void SetShopUI()
     {
         var entryDatas = new List<SeedShopEntryUIData>();
-        var seedDatas = GameSystem.I.StaticData.Seeds;
+        var seedDatas = staticData.Seeds;
         foreach (var seedData in seedDatas)
         {
             var seedCount = main.GetSeedCount(seedData.Id);
@@ -75,13 +80,13 @@ public class GameEventSystem
         }
 
         var uiData = new SeedShopUIData(entryDatas);
-        GameSystem.I.UI.SeedShopUI.ApplyData(uiData);
+        ui.SeedShopUI.ApplyData(uiData);
     }
 
     private void SetInventoryUI()
     {
         var entryDatas = new List<SeedInventoryEntryUIData>();
-        var seedDatas = GameSystem.I.StaticData.Seeds;
+        var seedDatas = staticData.Seeds;
         foreach (var seedData in seedDatas)
         {
             var seedCount = main.GetSeedCount(seedData.Id);
@@ -92,6 +97,15 @@ public class GameEventSystem
         }
 
         var uiData = new SeedInventoryUIData(entryDatas);
-        GameSystem.I.UI.SeedInventoryUI.ApplyData(uiData);
+        ui.SeedInventoryUI.ApplyData(uiData);
+    }
+
+    private void SetGachaResultUI(string plantId)
+    {
+        if (staticData.TryGetPlant(plantId, out var plantData))
+        {
+            var uiData = new GachaResultUIData(plantData.DisplayName, plantData.IconSprite, plantData.Rarity);
+            ui.GachaResultUI.ApplyData(uiData);
+        }
     }
 }

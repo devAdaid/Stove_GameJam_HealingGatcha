@@ -19,5 +19,7 @@ public class CollectionContext
         {
             PlantCounts.Add(plantId, 1);
         }
+
+        GameSystem.I.Event.InvokeEvent(new PlantAdded(plantId));
     }
 }

@@ -39,3 +39,13 @@ public class GoldUpdated : IGameEvent
         Gold = gold;
     }
 }
+
+public class PlantAdded : IGameEvent
+{
+    public readonly string PlantId;
+
+    public PlantAdded(string plantId)
+    {
+        PlantId = plantId;
+    }
+}
