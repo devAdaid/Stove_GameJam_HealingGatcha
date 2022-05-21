@@ -56,7 +56,7 @@ public class PlantCollectEntry : EntryBase
             plantImage.color = Color.black;
             plantNameText.text = $"???";
         }
-        rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
+        rarityImage.sprite = GameSystem.I.StaticData.GetRarityTextSprite(data.Rarity);
         //goldRewardText.text = $"{data.GoldReward} G";
     }
 }

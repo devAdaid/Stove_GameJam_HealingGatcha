@@ -7,7 +7,6 @@ public class MainContext
     public string SelectedSeedId { get; private set; }
     public Dictionary<string, int> SeedCounts { get; private set; } = new Dictionary<string, int>();
 
-    private static readonly int MAX_SEED = 10;
 
     public MainContext() { }
 
@@ -52,7 +51,7 @@ public class MainContext
     {
         if (SeedCounts.TryGetValue(seedId, out var count))
         {
-            return count < MAX_SEED;
+            return count < Constants.MAX_SEED_COUNT;
         }
         return true;
     }
@@ -62,17 +61,17 @@ public class MainContext
         if (SeedCounts.TryGetValue(seedId, out var currentCount))
         {
             var newCount = currentCount + value;
-            if (newCount > MAX_SEED)
+            if (newCount > Constants.MAX_SEED_COUNT)
             {
-                newCount = MAX_SEED;
+                newCount = Constants.MAX_SEED_COUNT;
             }
             SeedCounts[seedId] = newCount;
         }
         else
         {
-            if (value > MAX_SEED)
+            if (value > Constants.MAX_SEED_COUNT)
             {
-                value = MAX_SEED;
+                value = Constants.MAX_SEED_COUNT;
             }
             SeedCounts.Add(seedId, value);
         }

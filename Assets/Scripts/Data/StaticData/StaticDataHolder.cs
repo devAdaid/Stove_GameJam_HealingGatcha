@@ -11,7 +11,7 @@ public class StaticDataHolder
     private readonly Dictionary<string, SeedStaticData> seedsById;
     private readonly List<PlantStaticData> plantsByOrder;
     private readonly List<SeedStaticData> seedsByOrder;
-    private readonly Dictionary<ItemRarity, Sprite> raritySprites;
+    private readonly Dictionary<ItemRarity, RaritySpriteData> raritySprites;
 
     public StaticDataHolder()
     {
@@ -36,12 +36,12 @@ public class StaticDataHolder
         }
         seedsByOrder = seedsById.Values.OrderBy(x => x.Order).ToList();
 
-        raritySprites = new Dictionary<ItemRarity, Sprite>();
+        raritySprites = new Dictionary<ItemRarity, RaritySpriteData>();
         var raritySpriteData = Resources.Load<RaritySpriteScriptableData>("StaticData/Rarity");
-        raritySprites.Add(ItemRarity.N, raritySpriteData.NSprite);
-        raritySprites.Add(ItemRarity.R, raritySpriteData.RSprite);
-        raritySprites.Add(ItemRarity.SR, raritySpriteData.SRSprite);
-        raritySprites.Add(ItemRarity.SSR, raritySpriteData.SSRSprite);
+        foreach (var rarityData in raritySpriteData.DataList)
+        {
+            raritySprites.Add(rarityData.Rarity, rarityData);
+        }
 
         Debug.Log($"Data: {plantsByOrder.Count} plants, {seedsByOrder.Count} seeds");
     }
@@ -56,8 +56,18 @@ public class StaticDataHolder
         return seedsById.TryGetValue(id, out data);
     }
 
-    public Sprite GetRaritySprite(ItemRarity rarity)
+    public Sprite GetRarityTextSprite(ItemRarity rarity)
     {
-        return raritySprites[rarity];
+        return raritySprites[rarity].TextSprite;
+    }
+
+    public Sprite GetRarityGlowSprite(ItemRarity rarity)
+    {
+        return raritySprites[rarity].GlowSprite;
+    }
+
+    public Sprite GetRarityEffectBgSprite(ItemRarity rarity)
+    {
+        return raritySprites[rarity].EffectBGSprite;
     }
 }

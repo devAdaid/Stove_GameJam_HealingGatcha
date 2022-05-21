@@ -8,19 +8,21 @@ public class SeedShopEntryUIData
     public readonly string SeedDisplayName;
     public readonly int CurrentCount;
     public readonly int GoldCost;
-    public readonly bool CanBuy;
+    public readonly bool IsNotMaxCount;
+    public readonly bool IsEnoughGold;
     public readonly ItemRarity Rarity;
     public readonly bool IsAllCollected;
 
     public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount,
-        int goldCost, bool canBuy,
+        int goldCost, bool isNotMaxCount, bool isEnoughGold,
         ItemRarity rarity, bool isAllCollected)
     {
         SeedId = seedId;
         SeedDisplayName = seedDisplayName;
         CurrentCount = currentCount;
         GoldCost = goldCost;
-        CanBuy = canBuy;
+        IsNotMaxCount = isNotMaxCount;
+        IsEnoughGold = isEnoughGold;
         Rarity = rarity;
         IsAllCollected = isAllCollected;
     }
@@ -30,6 +32,8 @@ public class SeedShopEntry : EntryBase
 {
     [SerializeField]
     private TMP_Text seedNameText;
+    [SerializeField]
+    private TMP_Text seedCountText;
     [SerializeField]
     private TMP_Text goldCostText;
     [SerializeField]
@@ -49,16 +53,26 @@ public class SeedShopEntry : EntryBase
     public void ApplyData(SeedShopEntryUIData data)
     {
         seedId = data.SeedId;
-        seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount}개)";
-        if (data.CanBuy)
+        seedNameText.text = $"{data.SeedDisplayName}";
+
+        if (data.IsNotMaxCount)
+        {
+            seedCountText.text = $"{data.CurrentCount}/{Constants.MAX_SEED_COUNT}";
+        }
+        else
+        {
+            seedCountText.text = $"<color=red>{data.CurrentCount}/{Constants.MAX_SEED_COUNT}</color>";
+        }
+
+        if (data.IsEnoughGold)
         {
             goldCostText.text = $"{data.GoldCost} G";
         }
-        else if (data.CanBuy)
+        else
         {
             goldCostText.text = $"<color=red>{data.GoldCost} G</color>";
         }
-        rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
+        rarityImage.sprite = GameSystem.I.StaticData.GetRarityTextSprite(data.Rarity);
         allCollectBadge.SetActive(data.IsAllCollected);
     }
 

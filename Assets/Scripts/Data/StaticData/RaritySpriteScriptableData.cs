@@ -1,14 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
+
+[System.Serializable]
+public class RaritySpriteData
+{
+    public ItemRarity Rarity;
+    public Sprite TextSprite;
+    public Sprite GlowSprite;
+    public Sprite EffectBGSprite;
+}
 
 [CreateAssetMenu]
 public class RaritySpriteScriptableData : ScriptableObject
 {
-    [SerializeField]
-    public Sprite NSprite;
-    [SerializeField]
-    public Sprite RSprite;
-    [SerializeField]
-    public Sprite SRSprite;
-    [SerializeField]
-    public Sprite SSRSprite;
+    public List<RaritySpriteData> DataList;
 }

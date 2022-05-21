@@ -1703,6 +1703,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   root: {fileID: 1645744051}
+  background: {fileID: 0}
   lineText: {fileID: 335752674}
   particleSystem: {fileID: 685415443}
 --- !u!1 &509599444
@@ -1757,14 +1758,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.9019608, g: 1, b: 0.61960787, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: dc437ab821b6841908a3424387ab0398, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8340,8 +8341,6 @@ MonoBehaviour:
   plantNameText: {fileID: 1215455841}
   rarityImage: {fileID: 1010358718}
   glowImage: {fileID: 1078376682}
-  srGlowSprite: {fileID: 21300000, guid: e818a2236f4af47ad85b999171bb5cf6, type: 3}
-  ssrGlowSprite: {fileID: 21300000, guid: 4df2f21a0902c490788a5a47ac824dda, type: 3}
   closeButton: {fileID: 701376311}
 --- !u!1 &1010358716
 GameObject:
@@ -12737,7 +12736,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1991332182
 RectTransform:
   m_ObjectHideFlags: 0

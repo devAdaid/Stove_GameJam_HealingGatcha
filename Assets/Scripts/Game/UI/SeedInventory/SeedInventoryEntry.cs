@@ -43,7 +43,7 @@ public class SeedInventoryEntry : EntryBase
         seedId = data.SeedId;
         seedImage.sprite = data.SeedSprite;
         seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount}개)";
-        rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
+        rarityImage.sprite = GameSystem.I.StaticData.GetRarityTextSprite(data.Rarity);
     }
 
     private void OnClicked()

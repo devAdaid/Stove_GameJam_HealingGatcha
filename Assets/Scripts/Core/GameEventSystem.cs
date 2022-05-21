@@ -70,7 +70,8 @@ public class GameEventSystem
         {
             if (plantAdded.IsFirst && staticData.TryGetPlant(plantAdded.PlantId, out var plantData))
             {
-                ui.FirstCollectEffectUI.Play(plantData.FirstCollectLine, plantAdded.PlantId);
+                var bgSprite = staticData.GetRarityEffectBgSprite(plantData.Rarity);
+                ui.FirstCollectEffectUI.Play(plantData.FirstCollectLine, plantAdded.PlantId, bgSprite);
             }
             else
             {
@@ -83,6 +84,7 @@ public class GameEventSystem
             main.SetSelectedSeedId(prepareUI.SeedId);
             SetSeedPrepareUI(prepareUI.SeedId);
             ui.SeedPrepareUI.SetActive(true);
+            ui.SeedInventoryUI.SetActive(false);
         }
         else if (evt is OpenPlantCollectUI collectUI)
         {
@@ -120,8 +122,12 @@ public class GameEventSystem
         {
             var seedCount = main.GetSeedCount(seedData.Id);
             var isAllCollected = seedData.PlantProbabilityTable.Plants.All(x => collection.GetPlantCount(x) > 0);
-            var canBuy = (main.Gold >= seedData.GoldCost) && main.CanAddSeed(seedData.Id);
-            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, canBuy, seedData.Rarity, isAllCollected));
+            var isEnoughGold = main.Gold >= seedData.GoldCost;
+            var isNotMaxCount = main.CanAddSeed(seedData.Id);
+            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName,
+                seedCount, seedData.GoldCost,
+                isNotMaxCount, isEnoughGold,
+                seedData.Rarity, isAllCollected));
         }
 
         var uiData = new SeedShopUIData(entryDatas);

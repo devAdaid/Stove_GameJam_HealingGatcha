@@ -16,7 +16,7 @@ MonoBehaviour:
   Order: 3
   DisplayName: "\uC791\uBB3C \uC528\uC557"
   Rarity: 2
-  GoldCost: 0
+  GoldCost: 10
   IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
   ProbabilityDataList:
   - Rarity: 1

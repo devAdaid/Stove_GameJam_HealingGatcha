@@ -46,7 +46,14 @@ public class SeedPrepareUI : UIBase
     {
         seedId = data.SeedId;
         seedCount = data.SeedCount;
-        seedNameText.text = $"{data.SeedDisplayName} ({data.SeedCount}개 남음)";
+        if (data.SeedCount > 0)
+        {
+            seedNameText.text = $"{data.SeedDisplayName} ({data.SeedCount}개 남음)";
+        }
+        else
+        {
+            seedNameText.text = $"{data.SeedDisplayName} <color=red>({data.SeedCount}개 남음)</color>";
+        }
         seedImage.sprite = data.SeedIconSprite;
     }
 
@@ -93,7 +100,7 @@ public class SeedPrepareUI : UIBase
                 break;
         }
 
-        yield return new WaitForSeconds(1.1f);
+        yield return new WaitForSeconds(1.2f);
 
         gachaButton.gameObject.SetActive(true);
         closeButton.gameObject.SetActive(true);
