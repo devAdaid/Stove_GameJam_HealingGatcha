@@ -492,7 +492,7 @@ GameObject:
   - component: {fileID: 149189082}
   - component: {fileID: 149189081}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Highlight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3062,6 +3062,9 @@ MonoBehaviour:
   plantImage: {fileID: 1999446848}
   plantNameText: {fileID: 1215455841}
   rarityImage: {fileID: 1010358718}
+  glowImage: {fileID: 1078376682}
+  srGlowSprite: {fileID: 21300000, guid: e818a2236f4af47ad85b999171bb5cf6, type: 3}
+  ssrGlowSprite: {fileID: 21300000, guid: 4df2f21a0902c490788a5a47ac824dda, type: 3}
   closeButton: {fileID: 701376311}
 --- !u!1 &1010358716
 GameObject:

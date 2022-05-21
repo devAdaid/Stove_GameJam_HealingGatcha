@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066c9c3ea6886451dae607daf5e098fe, type: 3}
+  m_Name: Seed_5
+  m_EditorClassIdentifier: 
+  Id: CropSR
+  Order: 5
+  DisplayName: "\uACE0\uAE09 \uC791\uBB3C \uC528\uC557"
+  Rarity: 3
+  GoldCost: 0
+  IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
+  ProbabilityDataList:
+  - Rarity: 2
+    Weight: 3
+  - Rarity: 3
+    Weight: 6
+  - Rarity: 4
+    Weight: 1
+  PlantCandidates:
+  - {fileID: 11400000, guid: 21a2ef7140458421a841d7950db6afc2, type: 2}
+  - {fileID: 11400000, guid: 68886872b391d4892ad121ea48c1ac34, type: 2}
+  - {fileID: 11400000, guid: 6da43659e8ec0484e8b5df1d97f35f17, type: 2}
+  - {fileID: 11400000, guid: 4b69cf62da88f49e5b8a5b9d861f50d1, type: 2}
+  - {fileID: 11400000, guid: c0a218f8eeb614eccb97c75faba683ed, type: 2}
+  - {fileID: 11400000, guid: 28d958f8f9f1843c693cf8581f28d6f1, type: 2}
+  - {fileID: 11400000, guid: d635fc56f69ca4ad787999854ae43f48, type: 2}
+  - {fileID: 11400000, guid: 3639d6e9564b54532843026ad2da4300, type: 2}
+  - {fileID: 11400000, guid: 45ee27f9b30484f6f9a5d831c4298947, type: 2}

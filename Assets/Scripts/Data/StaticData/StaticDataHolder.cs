@@ -15,7 +15,10 @@ public class StaticDataHolder
 
     public StaticDataHolder()
     {
-        var plantDatas = Resources.LoadAll<PlantScriptableData>("StaticData/Plants");
+        var plantDatas = Resources.LoadAll<PlantScriptableData>("StaticData/Plants/N").ToList();
+        plantDatas.AddRange(Resources.LoadAll<PlantScriptableData>("StaticData/Plants/R"));
+        plantDatas.AddRange(Resources.LoadAll<PlantScriptableData>("StaticData/Plants/SR"));
+        plantDatas.AddRange(Resources.LoadAll<PlantScriptableData>("StaticData/Plants/SSR"));
         plantsById = new Dictionary<string, PlantStaticData>();
         foreach (var plantData in plantDatas)
         {

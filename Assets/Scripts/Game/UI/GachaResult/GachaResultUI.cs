@@ -26,6 +26,12 @@ public class GachaResultUI : UIBase
     [SerializeField]
     private Image rarityImage;
     [SerializeField]
+    private Image glowImage;
+    [SerializeField]
+    private Sprite srGlowSprite;
+    [SerializeField]
+    private Sprite ssrGlowSprite;
+    [SerializeField]
     private Button closeButton;
 
     public override void Initialize()
@@ -39,5 +45,16 @@ public class GachaResultUI : UIBase
         plantImage.sprite = data.IconSprite;
         plantNameText.text = $"{data.DisplayName}";
         rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
+
+        glowImage.gameObject.SetActive(data.Rarity >= ItemRarity.SR);
+        switch (data.Rarity)
+        {
+            case ItemRarity.SR:
+                glowImage.sprite = srGlowSprite;
+                break;
+            case ItemRarity.SSR:
+                glowImage.sprite = ssrGlowSprite;
+                break;
+        }
     }
 }

@@ -12,14 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c9c3ea6886451dae607daf5e098fe, type: 3}
   m_Name: Seed_2
   m_EditorClassIdentifier: 
-  Id: ac
+  Id: Mix
   Order: 2
-  DisplayName: ac
-  Rarity: 2
-  GoldCost: 20
+  DisplayName: "\uD63C\uD569 \uC528\uC557"
+  Rarity: 1
+  GoldCost: 0
   IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
   ProbabilityDataList:
-  - PlantId: Aaa
-    Weight: 2
-  - PlantId: Ccc
+  - Rarity: 1
+    Weight: 6
+  - Rarity: 2
+    Weight: 3
+  - Rarity: 3
     Weight: 1
+  PlantCandidates:
+  - {fileID: 11400000, guid: 0a459ffec793b4e01898aefaea90e843, type: 2}
+  - {fileID: 11400000, guid: 063e0def0ed104c70882f4b10bad63af, type: 2}
+  - {fileID: 11400000, guid: a7457d338346e405da1602bd4084d813, type: 2}
+  - {fileID: 11400000, guid: 4f6317f8e238d4234b33e466d42c971f, type: 2}
+  - {fileID: 11400000, guid: 68886872b391d4892ad121ea48c1ac34, type: 2}
+  - {fileID: 11400000, guid: a45bf326e1aab4d6da213656c6abf939, type: 2}
+  - {fileID: 11400000, guid: 28d958f8f9f1843c693cf8581f28d6f1, type: 2}
+  - {fileID: 11400000, guid: db9d8e6053dd94aa9a97fd27fd55a11c, type: 2}

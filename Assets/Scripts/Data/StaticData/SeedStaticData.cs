@@ -18,6 +18,6 @@ public class SeedStaticData
         Rarity = data.Rarity;
         GoldCost = data.GoldCost;
         IconSprite = data.IconSprite;
-        PlantProbabilityTable = new PlantProbabilityTable(data.ProbabilityDataList);
+        PlantProbabilityTable = new PlantProbabilityTable(data.ProbabilityDataList, data.PlantCandidates);
     }
 }

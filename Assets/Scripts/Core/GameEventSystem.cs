@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 public class GameEventSystem
 {
@@ -43,7 +44,7 @@ public class GameEventSystem
             {
                 if (main.CanDecreaseSeed(useSeed.SeedId, 1))
                 {
-                    var plantId = seedData.PlantProbabilityTable.PickOne();
+                    var plantId = seedData.PlantProbabilityTable.PickPlant();
                     if (staticData.TryGetPlant(plantId, out var plantData))
                     {
                         main.DecreaseSeed(useSeed.SeedId, 1);
@@ -107,7 +108,8 @@ public class GameEventSystem
         foreach (var seedData in seedDatas)
         {
             var seedCount = main.GetSeedCount(seedData.Id);
-            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, seedData.Rarity));
+            var isAllCollected = seedData.PlantProbabilityTable.Plants.All(x => collection.GetPlantCount(x) > 0);
+            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, seedData.Rarity, isAllCollected));
         }
 
         var uiData = new SeedShopUIData(entryDatas);

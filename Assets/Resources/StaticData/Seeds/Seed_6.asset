@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 066c9c3ea6886451dae607daf5e098fe, type: 3}
+  m_Name: Seed_6
+  m_EditorClassIdentifier: 
+  Id: FlowerSR
+  Order: 6
+  DisplayName: "\uACE0\uAE09 \uAF43 \uC528\uC557"
+  Rarity: 3
+  GoldCost: 0
+  IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
+  ProbabilityDataList:
+  - Rarity: 2
+    Weight: 5
+  - Rarity: 3
+    Weight: 3
+  - Rarity: 4
+    Weight: 2
+  PlantCandidates:
+  - {fileID: 11400000, guid: a45bf326e1aab4d6da213656c6abf939, type: 2}
+  - {fileID: 11400000, guid: 72c301fb269f1437baf0db7b0562524e, type: 2}
+  - {fileID: 11400000, guid: 7fdd8d975df604b9e84fbfc896a0a119, type: 2}
+  - {fileID: 11400000, guid: 681c7abe3922f431a8109107951f7f6e, type: 2}
+  - {fileID: 11400000, guid: db9d8e6053dd94aa9a97fd27fd55a11c, type: 2}
+  - {fileID: 11400000, guid: 17f95b4e0bef0491aad7f269f987f4b8, type: 2}
+  - {fileID: 11400000, guid: f1e84ffe86c1d4a88a7ee430913466cd, type: 2}
+  - {fileID: 11400000, guid: e23fcdb471d184cb097c7eef641933af, type: 2}

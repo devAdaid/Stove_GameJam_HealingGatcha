@@ -12,14 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 066c9c3ea6886451dae607daf5e098fe, type: 3}
   m_Name: Seed_1
   m_EditorClassIdentifier: 
-  Id: ab
+  Id: Basic
   Order: 1
-  DisplayName: ab
+  DisplayName: "\uAE30\uBCF8 \uC528\uC557"
   Rarity: 1
   GoldCost: 0
   IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
   ProbabilityDataList:
-  - PlantId: Aaa
-    Weight: 1
-  - PlantId: Bbb
-    Weight: 1
+  - Rarity: 1
+    Weight: 8
+  - Rarity: 2
+    Weight: 2
+  PlantCandidates:
+  - {fileID: 11400000, guid: 0a459ffec793b4e01898aefaea90e843, type: 2}
+  - {fileID: 11400000, guid: 063e0def0ed104c70882f4b10bad63af, type: 2}
+  - {fileID: 11400000, guid: 7236e60bc4b4347f68921631337d6d23, type: 2}
+  - {fileID: 11400000, guid: 7fdd8d975df604b9e84fbfc896a0a119, type: 2}
+  - {fileID: 11400000, guid: 21a2ef7140458421a841d7950db6afc2, type: 2}

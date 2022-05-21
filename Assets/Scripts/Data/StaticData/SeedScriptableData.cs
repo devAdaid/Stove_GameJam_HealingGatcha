@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class PlantProbabilityData
+public class SeedRarityProbabilityData
 {
-    public string PlantId;
+    public ItemRarity Rarity;
     public int Weight;
 }
 
@@ -17,5 +17,6 @@ public class SeedScriptableData : ScriptableObject
     public ItemRarity Rarity;
     public int GoldCost;
     public Sprite IconSprite;
-    public List<PlantProbabilityData> ProbabilityDataList;
+    public List<SeedRarityProbabilityData> ProbabilityDataList;
+    public List<PlantScriptableData> PlantCandidates;
 }
