@@ -82,6 +82,11 @@ public class GameEventSystem
             SetPlantCollectUI();
             ui.PlantCollectUI.SetActive(true);
         }
+        else if (evt is OpenSeedShopUI seedShopUI)
+        {
+            SetShopUI();
+            ui.SeedShopUI.SetActive(true);
+        }
     }
 
     private void SetShopUI()

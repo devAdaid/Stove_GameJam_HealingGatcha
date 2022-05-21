@@ -6,4 +6,8 @@ public class ButtonUtil : MonoBehaviour
     {
         GameSystem.I.Event.InvokeEvent(new OpenPlantCollectUI());
     }
+    public void OpenSeedShopUI()
+    {
+        GameSystem.I.Event.InvokeEvent(new OpenSeedShopUI());
+    }
 }

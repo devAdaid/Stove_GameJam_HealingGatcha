@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SeedShopUIData
 {
@@ -17,12 +18,16 @@ public class SeedShopUI : UIBase
     private Transform entryRoot;
     [SerializeField]
     private SeedShopEntry entryPrefab;
+    [SerializeField]
+    private Button closeButton;
 
     private List<SeedShopEntry> entries = new List<SeedShopEntry>();
 
     public override void Initialize()
     {
         UIUtil.AddExistEntries(entries, entryRoot);
+        SetActive(false);
+        closeButton.onClick.AddListener(() => SetActive(false));
     }
 
     public void ApplyData(SeedShopUIData data)

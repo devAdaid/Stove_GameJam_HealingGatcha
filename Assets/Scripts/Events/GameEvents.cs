@@ -69,3 +69,7 @@ public class OpenSeedPrepareUI : IGameEvent
 public class OpenPlantCollectUI : IGameEvent
 {
 }
+
+public class OpenSeedShopUI : IGameEvent
+{
+}

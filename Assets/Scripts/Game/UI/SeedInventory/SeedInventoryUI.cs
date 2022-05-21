@@ -23,6 +23,7 @@ public class SeedInventoryUI : UIBase
     public override void Initialize()
     {
         UIUtil.AddExistEntries(entries, entryRoot);
+        //closeButton.onClick.AddListener(() => SetActive(false));
     }
 
     public void ApplyData(SeedInventoryUIData data)
