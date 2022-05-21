@@ -7,6 +7,8 @@ public class MainContext
     public string SelectedSeedId { get; private set; }
     public Dictionary<string, int> SeedCounts { get; private set; } = new Dictionary<string, int>();
 
+    private static readonly int MAX_SEED = 10;
+
     public MainContext() { }
 
     public void SetSelectedSeedId(string seedId)
@@ -46,16 +48,35 @@ public class MainContext
         return 0;
     }
 
+    public bool CanAddSeed(string seedId)
+    {
+        if (SeedCounts.TryGetValue(seedId, out var count))
+        {
+            return count < MAX_SEED;
+        }
+        return true;
+    }
+
     public void AddSeed(string seedId, int value)
     {
         if (SeedCounts.TryGetValue(seedId, out var currentCount))
         {
-            SeedCounts[seedId] = currentCount + value;
+            var newCount = currentCount + value;
+            if (newCount > MAX_SEED)
+            {
+                newCount = MAX_SEED;
+            }
+            SeedCounts[seedId] = newCount;
         }
         else
         {
+            if (value > MAX_SEED)
+            {
+                value = MAX_SEED;
+            }
             SeedCounts.Add(seedId, value);
         }
+
         GameSystem.I.Event.InvokeEvent(new SeedUpdated(seedId));
     }
 
@@ -78,6 +99,11 @@ public class MainContext
         {
             SeedCounts[seedId] -= value;
             GameSystem.I.Event.InvokeEvent(new SeedUpdated(seedId));
+        }
+
+        if (SeedCounts[seedId] == 0)
+        {
+            SeedCounts.Remove(seedId);
         }
 
         return result;

@@ -1,3 +1,4 @@
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,13 +29,15 @@ public class SeedPrepareUI : UIBase
     private Button gachaButton;
     [SerializeField]
     private Button closeButton;
+    [SerializeField]
+    private Animator animator;
 
     private string seedId;
+    private int seedCount;
 
     public override void Initialize()
     {
-        //TODO: 가챠 연출 후  
-        gachaButton.onClick.AddListener(() => GameSystem.I.Event.InvokeEvent(new RequestUseSeed(seedId)));
+        gachaButton.onClick.AddListener(OnGachaButtonClicked);
         closeButton.onClick.AddListener(() => SetActive(false));
         SetActive(false);
     }
@@ -42,7 +45,59 @@ public class SeedPrepareUI : UIBase
     public void ApplyData(SeedPrepareUIData data)
     {
         seedId = data.SeedId;
+        seedCount = data.SeedCount;
         seedNameText.text = $"{data.SeedDisplayName} ({data.SeedCount}개 남음)";
         seedImage.sprite = data.SeedIconSprite;
+    }
+
+    private void OnGachaButtonClicked()
+    {
+        if (seedCount > 0)
+        {
+            StartCoroutine(Gacha());
+        }
+    }
+
+    private IEnumerator Gacha()
+    {
+        var plantId = string.Empty;
+        if (!GameSystem.I.StaticData.TryGetSeed(seedId, out var staticData))
+        {
+            yield break;
+        }
+
+        plantId = staticData.PlantProbabilityTable.PickPlant();
+        if (!GameSystem.I.StaticData.TryGetPlant(plantId, out var plantData))
+        {
+            yield break;
+        }
+
+        gachaButton.gameObject.SetActive(false);
+        closeButton.gameObject.SetActive(false);
+        seedNameText.transform.parent.gameObject.SetActive(false);
+
+        ItemRarity rarity = plantData.Rarity;
+        switch (rarity)
+        {
+            case ItemRarity.N:
+                animator.Play("Effect_Normal");
+                break;
+            case ItemRarity.R:
+                animator.Play("Effect_Silver");
+                break;
+            case ItemRarity.SR:
+                animator.Play("Effect_Gold");
+                break;
+            case ItemRarity.SSR:
+                animator.Play("Effect_Rainbow");
+                break;
+        }
+
+        yield return new WaitForSeconds(1.1f);
+
+        gachaButton.gameObject.SetActive(true);
+        closeButton.gameObject.SetActive(true);
+        seedNameText.transform.parent.gameObject.SetActive(true);
+        GameSystem.I.Event.InvokeEvent(new RequestUseSeed(seedId, plantId));
     }
 }

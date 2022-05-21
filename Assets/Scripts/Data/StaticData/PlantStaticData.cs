@@ -8,6 +8,7 @@ public class PlantStaticData
     public readonly ItemRarity Rarity;
     public readonly int GoldReward;
     public readonly Sprite IconSprite;
+    public readonly string FirstCollectLine;
 
     public PlantStaticData(PlantScriptableData data)
     {
@@ -17,5 +18,6 @@ public class PlantStaticData
         Rarity = data.Rarity;
         GoldReward = data.GoldReward;
         IconSprite = data.IconSprite;
+        FirstCollectLine = data.FirstCollectLine;
     }
 }

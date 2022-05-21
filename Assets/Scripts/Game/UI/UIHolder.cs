@@ -9,6 +9,7 @@ public class UIHolder
     public SeedPrepareUI SeedPrepareUI;
     public PlantCollectUI PlantCollectUI;
     public GoldUI GoldUI;
+    public FirstCollectEffectUI FirstCollectEffectUI;
     //public TimingGameUI TimingGameUI;
 
     public UIHolder()
@@ -34,6 +35,9 @@ public class UIHolder
 
         GoldUI = GameObject.FindObjectOfType<GoldUI>();
         GoldUI.Initialize();
+
+        FirstCollectEffectUI = GameObject.FindObjectOfType<FirstCollectEffectUI>();
+        FirstCollectEffectUI.Initialize();
 
         //TimingGameUI = GameObject.FindObjectOfType<TimingGameUI>();
         //TimingGameUI.Initialize();

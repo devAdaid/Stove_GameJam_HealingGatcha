@@ -19,10 +19,12 @@ public class RequestBuySeed : IGameEvent
 public class RequestUseSeed : IGameEvent
 {
     public readonly string SeedId;
+    public readonly string PlantId;
 
-    public RequestUseSeed(string seedId)
+    public RequestUseSeed(string seedId, string plantId)
     {
         SeedId = seedId;
+        PlantId = plantId;
     }
 }
 
@@ -49,10 +51,12 @@ public class GoldUpdated : IGameEvent
 public class PlantAdded : IGameEvent
 {
     public readonly string PlantId;
+    public readonly bool IsFirst;
 
-    public PlantAdded(string plantId)
+    public PlantAdded(string plantId, bool isFirst)
     {
         PlantId = plantId;
+        IsFirst = isFirst;
     }
 }
 
@@ -76,4 +80,14 @@ public class OpenSeedShopUI : IGameEvent
 
 public class OpenSeedInventoryUI : IGameEvent
 {
+}
+
+public class OpenGachaResultUI : IGameEvent
+{
+    public readonly string PlantId;
+
+    public OpenGachaResultUI(string plantId)
+    {
+        PlantId = plantId;
+    }
 }

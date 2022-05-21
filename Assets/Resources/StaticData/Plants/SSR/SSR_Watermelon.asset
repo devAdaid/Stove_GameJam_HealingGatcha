@@ -18,3 +18,4 @@ MonoBehaviour:
   Rarity: 4
   GoldReward: 0
   IconSprite: {fileID: 21300000, guid: 689e2b7e3129c48fbaab574aa28fd3a6, type: 3}
+  FirstCollectLine: "(\uC784\uC2DC) \uCD5C\uCD08 \uD68D\uB4DD \uB300\uC0AC"

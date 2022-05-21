@@ -8,15 +8,19 @@ public class SeedShopEntryUIData
     public readonly string SeedDisplayName;
     public readonly int CurrentCount;
     public readonly int GoldCost;
+    public readonly bool CanBuy;
     public readonly ItemRarity Rarity;
     public readonly bool IsAllCollected;
 
-    public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount, int goldCost, ItemRarity rarity, bool isAllCollected)
+    public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount,
+        int goldCost, bool canBuy,
+        ItemRarity rarity, bool isAllCollected)
     {
         SeedId = seedId;
         SeedDisplayName = seedDisplayName;
         CurrentCount = currentCount;
         GoldCost = goldCost;
+        CanBuy = canBuy;
         Rarity = rarity;
         IsAllCollected = isAllCollected;
     }
@@ -46,7 +50,14 @@ public class SeedShopEntry : EntryBase
     {
         seedId = data.SeedId;
         seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount}개)";
-        goldCostText.text = $"{data.GoldCost} G";
+        if (data.CanBuy)
+        {
+            goldCostText.text = $"{data.GoldCost} G";
+        }
+        else if (data.CanBuy)
+        {
+            goldCostText.text = $"<color=red>{data.GoldCost} G</color>";
+        }
         rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
         allCollectBadge.SetActive(data.IsAllCollected);
     }

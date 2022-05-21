@@ -10,4 +10,6 @@ public class PlantScriptableData : ScriptableObject
     public ItemRarity Rarity;
     public int GoldReward;
     public Sprite IconSprite;
+    [TextArea]
+    public string FirstCollectLine;
 }

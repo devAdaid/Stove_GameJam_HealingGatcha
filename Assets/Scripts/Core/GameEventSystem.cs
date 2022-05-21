@@ -44,12 +44,11 @@ public class GameEventSystem
             {
                 if (main.CanDecreaseSeed(useSeed.SeedId, 1))
                 {
-                    var plantId = seedData.PlantProbabilityTable.PickPlant();
-                    if (staticData.TryGetPlant(plantId, out var plantData))
+                    if (staticData.TryGetPlant(useSeed.PlantId, out var plantData))
                     {
                         main.DecreaseSeed(useSeed.SeedId, 1);
                         main.AddGold(plantData.GoldReward);
-                        collection.AddPlantCount(plantId);
+                        collection.AddPlantCount(useSeed.PlantId);
                     }
                 }
             }
@@ -69,8 +68,15 @@ public class GameEventSystem
         }
         else if (evt is PlantAdded plantAdded)
         {
-            SetGachaResultUI(plantAdded.PlantId);
-            ui.GachaResultUI.SetActive(true);
+            if (plantAdded.IsFirst && staticData.TryGetPlant(plantAdded.PlantId, out var plantData))
+            {
+                ui.FirstCollectEffectUI.Play(plantData.FirstCollectLine, plantAdded.PlantId);
+            }
+            else
+            {
+                SetGachaResultUI(plantAdded.PlantId);
+                ui.GachaResultUI.SetActive(true);
+            }
         }
         else if (evt is OpenSeedPrepareUI prepareUI)
         {
@@ -93,6 +99,11 @@ public class GameEventSystem
             SetInventoryUI();
             ui.SeedInventoryUI.SetActive(true);
         }
+        else if (evt is OpenGachaResultUI gachaResultUI)
+        {
+            SetGachaResultUI(gachaResultUI.PlantId);
+            ui.GachaResultUI.SetActive(true);
+        }
     }
 
     private void SetGoldUI()
@@ -109,7 +120,8 @@ public class GameEventSystem
         {
             var seedCount = main.GetSeedCount(seedData.Id);
             var isAllCollected = seedData.PlantProbabilityTable.Plants.All(x => collection.GetPlantCount(x) > 0);
-            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, seedData.Rarity, isAllCollected));
+            var canBuy = (main.Gold >= seedData.GoldCost) && main.CanAddSeed(seedData.Id);
+            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, canBuy, seedData.Rarity, isAllCollected));
         }
 
         var uiData = new SeedShopUIData(entryDatas);
