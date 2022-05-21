@@ -17,4 +17,4 @@ MonoBehaviour:
   DisplayName: Aaa
   Rarity: 1
   GoldReward: 10
-  IconSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  IconSprite: {fileID: 21300000, guid: 38fa50a976c6445779541921c1e4b712, type: 3}

@@ -1,13 +1,16 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlantCollectUIData
 {
+    public readonly int ProgressPercent;
     public readonly List<PlantCollectEntryUIData> EntryDataList;
 
-    public PlantCollectUIData(List<PlantCollectEntryUIData> entryDataList)
+    public PlantCollectUIData(int progressPercent, List<PlantCollectEntryUIData> entryDataList)
     {
+        ProgressPercent = progressPercent;
         EntryDataList = entryDataList;
     }
 }
@@ -26,6 +29,8 @@ public class PlantCollectUI : UIBase
     private Button leftPageButton;
     [SerializeField]
     private Button rightPageButton;
+    [SerializeField]
+    private TMP_Text progressText;
 
     private int page = 0;
     private int maxPage = 0;
@@ -48,9 +53,9 @@ public class PlantCollectUI : UIBase
 
     public void ApplyData(PlantCollectUIData data)
     {
+        progressText.text = $"완성도: {data.ProgressPercent}%";
         entryDatas = data.EntryDataList;
         maxPage = Mathf.Max(0, ((data.EntryDataList.Count - 1) / MAX_PLANT_PER_TWO_PAGES));
-        Debug.Log($"maxPage : {maxPage}");
         SetEntry();
     }
 
@@ -79,14 +84,11 @@ public class PlantCollectUI : UIBase
     private void SetEntry()
     {
         var showEntryCount = GetShowEntryCount(entryDatas.Count, page);
-        Debug.Log($"showEntryCount : {showEntryCount}");
 
         var leftEntryCount = Mathf.Min(showEntryCount, MAX_PLANT_PER_PAGE);
         var rightEntryCount = Mathf.Max(showEntryCount - MAX_PLANT_PER_PAGE, 0);
 
         var (leftIndex, rightIndex) = GetStartIndex(entryDatas.Count, page);
-        Debug.Log($"leftEntryCount : {leftEntryCount} / leftIndex : {leftIndex}");
-        Debug.Log($"rightEntryCount : {rightEntryCount} / rightIndex : {rightIndex}");
         UIUtil.SetEnableEntryCount(entriesLeft, entryPrefab, entryRootLeft, leftEntryCount);
         if (leftIndex >= 0)
         {

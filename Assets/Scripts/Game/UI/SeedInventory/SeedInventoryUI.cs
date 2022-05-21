@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SeedInventoryUIData
 {
@@ -17,13 +18,15 @@ public class SeedInventoryUI : UIBase
     private Transform entryRoot;
     [SerializeField]
     private SeedInventoryEntry entryPrefab;
+    [SerializeField]
+    private Button closeButton;
 
     private List<SeedInventoryEntry> entries = new List<SeedInventoryEntry>();
 
     public override void Initialize()
     {
         UIUtil.AddExistEntries(entries, entryRoot);
-        //closeButton.onClick.AddListener(() => SetActive(false));
+        closeButton.onClick.AddListener(() => SetActive(false));
     }
 
     public void ApplyData(SeedInventoryUIData data)

@@ -17,7 +17,7 @@ MonoBehaviour:
   DisplayName: ab
   Rarity: 1
   GoldCost: 0
-  IconSprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  IconSprite: {fileID: 21300000, guid: 561956cbb5b384edab03b60bb6b0dec2, type: 3}
   ProbabilityDataList:
   - PlantId: Aaa
     Weight: 1

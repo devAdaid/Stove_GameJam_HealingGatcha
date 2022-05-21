@@ -11,6 +11,7 @@ public class StaticDataHolder
     private readonly Dictionary<string, SeedStaticData> seedsById;
     private readonly List<PlantStaticData> plantsByOrder;
     private readonly List<SeedStaticData> seedsByOrder;
+    private readonly Dictionary<ItemRarity, Sprite> raritySprites;
 
     public StaticDataHolder()
     {
@@ -32,6 +33,13 @@ public class StaticDataHolder
         }
         seedsByOrder = seedsById.Values.OrderBy(x => x.Order).ToList();
 
+        raritySprites = new Dictionary<ItemRarity, Sprite>();
+        var raritySpriteData = Resources.Load<RaritySpriteScriptableData>("StaticData/Rarity");
+        raritySprites.Add(ItemRarity.N, raritySpriteData.NSprite);
+        raritySprites.Add(ItemRarity.R, raritySpriteData.RSprite);
+        raritySprites.Add(ItemRarity.SR, raritySpriteData.SRSprite);
+        raritySprites.Add(ItemRarity.SSR, raritySpriteData.SSRSprite);
+
         Debug.Log($"Data: {plantsByOrder.Count} plants, {seedsByOrder.Count} seeds");
     }
 
@@ -43,5 +51,10 @@ public class StaticDataHolder
     public bool TryGetSeed(string id, out SeedStaticData data)
     {
         return seedsById.TryGetValue(id, out data);
+    }
+
+    public Sprite GetRaritySprite(ItemRarity rarity)
+    {
+        return raritySprites[rarity];
     }
 }

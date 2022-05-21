@@ -24,7 +24,7 @@ public class GameEventSystem
         if (evt is RequestStartGame startGameButtonClicked)
         {
             ui.StartGameUI.SetActive(false);
-            SetShopUI();
+            SetGoldUI();
         }
         else if (evt is RequestBuySeed buySeed)
         {
@@ -64,7 +64,7 @@ public class GameEventSystem
         }
         else if (evt is GoldUpdated goldUpdated)
         {
-            // TODO: GOLD
+            SetGoldUI();
         }
         else if (evt is PlantAdded plantAdded)
         {
@@ -87,6 +87,17 @@ public class GameEventSystem
             SetShopUI();
             ui.SeedShopUI.SetActive(true);
         }
+        else if (evt is OpenSeedInventoryUI seedInventoryUI)
+        {
+            SetInventoryUI();
+            ui.SeedInventoryUI.SetActive(true);
+        }
+    }
+
+    private void SetGoldUI()
+    {
+        var gold = main.Gold;
+        ui.GoldUI.ApplyData(gold);
     }
 
     private void SetShopUI()
@@ -96,7 +107,7 @@ public class GameEventSystem
         foreach (var seedData in seedDatas)
         {
             var seedCount = main.GetSeedCount(seedData.Id);
-            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost));
+            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedCount, seedData.GoldCost, seedData.Rarity));
         }
 
         var uiData = new SeedShopUIData(entryDatas);
@@ -112,7 +123,7 @@ public class GameEventSystem
             var seedCount = main.GetSeedCount(seedData.Id);
             if (seedCount > 0)
             {
-                entryDatas.Add(new SeedInventoryEntryUIData(seedData.Id, seedData.DisplayName, seedCount));
+                entryDatas.Add(new SeedInventoryEntryUIData(seedData.Id, seedData.DisplayName, seedData.IconSprite, seedCount, seedData.Rarity));
             }
         }
 
@@ -143,16 +154,22 @@ public class GameEventSystem
 
     private void SetPlantCollectUI()
     {
+        var collectedCount = 0;
         var entryDatas = new List<PlantCollectEntryUIData>();
         foreach (var plantData in staticData.Plants)
         {
             var plantCount = collection.GetPlantCount(plantData.Id);
+            if (plantCount > 0)
+            {
+                collectedCount += 1;
+            }
             entryDatas.Add(new PlantCollectEntryUIData(
                 plantData.Id, plantData.DisplayName, plantData.Rarity,
                 plantData.IconSprite, plantCount, plantData.GoldReward));
         }
 
-        var uiData = new PlantCollectUIData(entryDatas);
+        var collectedPercent = (collectedCount * 100f) / staticData.Plants.Count;
+        var uiData = new PlantCollectUIData((int)collectedPercent, entryDatas);
         ui.PlantCollectUI.ApplyData(uiData);
     }
 }

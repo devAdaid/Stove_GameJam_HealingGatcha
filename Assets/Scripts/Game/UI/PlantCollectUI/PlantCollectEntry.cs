@@ -31,6 +31,8 @@ public class PlantCollectEntry : EntryBase
     private TMP_Text plantNameText;
     [SerializeField]
     private Image plantImage;
+    [SerializeField]
+    private Image rarityImage;
     //[SerializeField]
     //private TMP_Text goldRewardText;
 
@@ -54,6 +56,7 @@ public class PlantCollectEntry : EntryBase
             plantImage.color = Color.black;
             plantNameText.text = $"???";
         }
+        rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
         //goldRewardText.text = $"{data.GoldReward} G";
     }
 }

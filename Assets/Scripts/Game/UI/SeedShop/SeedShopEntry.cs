@@ -8,13 +8,15 @@ public class SeedShopEntryUIData
     public readonly string SeedDisplayName;
     public readonly int CurrentCount;
     public readonly int GoldCost;
+    public readonly ItemRarity Rarity;
 
-    public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount, int goldCost)
+    public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount, int goldCost, ItemRarity rarity)
     {
         SeedId = seedId;
         SeedDisplayName = seedDisplayName;
         CurrentCount = currentCount;
         GoldCost = goldCost;
+        Rarity = rarity;
     }
 }
 
@@ -24,6 +26,8 @@ public class SeedShopEntry : EntryBase
     private TMP_Text seedNameText;
     [SerializeField]
     private TMP_Text goldCostText;
+    [SerializeField]
+    private Image rarityImage;
     [SerializeField]
     private Button button;
 
@@ -37,8 +41,9 @@ public class SeedShopEntry : EntryBase
     public void ApplyData(SeedShopEntryUIData data)
     {
         seedId = data.SeedId;
-        seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount})";
+        seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount}개)";
         goldCostText.text = $"{data.GoldCost} G";
+        rarityImage.sprite = GameSystem.I.StaticData.GetRaritySprite(data.Rarity);
     }
 
     private void OnClicked()

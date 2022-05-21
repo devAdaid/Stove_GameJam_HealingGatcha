@@ -23,8 +23,6 @@ public class SeedPrepareUI : UIBase
     [SerializeField]
     private TMP_Text seedNameText;
     [SerializeField]
-    private TMP_Text seedCountText;
-    [SerializeField]
     private Image seedImage;
     [SerializeField]
     private Button gachaButton;
@@ -44,8 +42,7 @@ public class SeedPrepareUI : UIBase
     public void ApplyData(SeedPrepareUIData data)
     {
         seedId = data.SeedId;
-        seedNameText.text = data.SeedDisplayName;
-        seedCountText.text = data.SeedCount.ToString();
+        seedNameText.text = $"{data.SeedDisplayName} ({data.SeedCount}개 남음)";
         seedImage.sprite = data.SeedIconSprite;
     }
 }
