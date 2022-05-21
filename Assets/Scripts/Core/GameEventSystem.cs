@@ -57,6 +57,10 @@ public class GameEventSystem
         {
             SetShopUI();
             SetInventoryUI();
+            if (main.SelectedSeedId == seedUpdated.SeedId)
+            {
+                SetSeedPrepareUI(seedUpdated.SeedId);
+            }
         }
         else if (evt is GoldUpdated goldUpdated)
         {
@@ -66,6 +70,17 @@ public class GameEventSystem
         {
             SetGachaResultUI(plantAdded.PlantId);
             ui.GachaResultUI.SetActive(true);
+        }
+        else if (evt is OpenSeedPrepareUI prepareUI)
+        {
+            main.SetSelectedSeedId(prepareUI.SeedId);
+            SetSeedPrepareUI(prepareUI.SeedId);
+            ui.SeedPrepareUI.SetActive(true);
+        }
+        else if (evt is OpenPlantCollectUI collectUI)
+        {
+            SetPlantCollectUI();
+            ui.PlantCollectUI.SetActive(true);
         }
     }
 
@@ -107,5 +122,32 @@ public class GameEventSystem
             var uiData = new GachaResultUIData(plantData.DisplayName, plantData.IconSprite, plantData.Rarity);
             ui.GachaResultUI.ApplyData(uiData);
         }
+    }
+
+    private void SetSeedPrepareUI(string seedId)
+    {
+        if (!staticData.TryGetSeed(seedId, out var seedData))
+        {
+            return;
+        }
+
+        var seedCount = main.GetSeedCount(seedData.Id);
+        var uiData = new SeedPrepareUIData(seedId, seedData.DisplayName, seedCount, seedData.IconSprite);
+        ui.SeedPrepareUI.ApplyData(uiData);
+    }
+
+    private void SetPlantCollectUI()
+    {
+        var entryDatas = new List<PlantCollectEntryUIData>();
+        foreach (var plantData in staticData.Plants)
+        {
+            var plantCount = collection.GetPlantCount(plantData.Id);
+            entryDatas.Add(new PlantCollectEntryUIData(
+                plantData.Id, plantData.DisplayName, plantData.Rarity,
+                plantData.IconSprite, plantCount, plantData.GoldReward));
+        }
+
+        var uiData = new PlantCollectUIData(entryDatas);
+        ui.PlantCollectUI.ApplyData(uiData);
     }
 }

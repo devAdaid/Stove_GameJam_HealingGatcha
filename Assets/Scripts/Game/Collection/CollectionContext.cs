@@ -22,4 +22,14 @@ public class CollectionContext
 
         GameSystem.I.Event.InvokeEvent(new PlantAdded(plantId));
     }
+
+    public int GetPlantCount(string plantId)
+    {
+        if (PlantCounts.TryGetValue(plantId, out var currentCount))
+        {
+            return currentCount;
+        }
+
+        return 0;
+    }
 }

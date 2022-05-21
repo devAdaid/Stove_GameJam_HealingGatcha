@@ -28,6 +28,12 @@ public class RequestUseSeed : IGameEvent
 
 public class SeedUpdated : IGameEvent
 {
+    public readonly string SeedId;
+
+    public SeedUpdated(string seedId)
+    {
+        SeedId = seedId;
+    }
 }
 
 public class GoldUpdated : IGameEvent
@@ -48,4 +54,18 @@ public class PlantAdded : IGameEvent
     {
         PlantId = plantId;
     }
+}
+
+public class OpenSeedPrepareUI : IGameEvent
+{
+    public readonly string SeedId;
+
+    public OpenSeedPrepareUI(string seedId)
+    {
+        SeedId = seedId;
+    }
+}
+
+public class OpenPlantCollectUI : IGameEvent
+{
 }

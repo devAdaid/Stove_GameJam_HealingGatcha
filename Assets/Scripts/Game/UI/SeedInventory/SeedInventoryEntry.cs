@@ -38,6 +38,6 @@ public class SeedInventoryEntry : EntryBase
 
     private void OnClicked()
     {
-        GameSystem.I.Event.InvokeEvent(new RequestUseSeed(seedId));
+        GameSystem.I.Event.InvokeEvent(new OpenSeedPrepareUI(seedId));
     }
 }

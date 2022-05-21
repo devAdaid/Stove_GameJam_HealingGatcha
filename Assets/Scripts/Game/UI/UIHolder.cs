@@ -6,6 +6,8 @@ public class UIHolder
     public SeedShopUI SeedShopUI;
     public SeedInventoryUI SeedInventoryUI;
     public GachaResultUI GachaResultUI;
+    public SeedPrepareUI SeedPrepareUI;
+    public PlantCollectUI PlantCollectUI;
     //public TimingGameUI TimingGameUI;
 
     public UIHolder()
@@ -22,6 +24,12 @@ public class UIHolder
 
         GachaResultUI = GameObject.FindObjectOfType<GachaResultUI>();
         GachaResultUI.Initialize();
+
+        SeedPrepareUI = GameObject.FindObjectOfType<SeedPrepareUI>();
+        SeedPrepareUI.Initialize();
+
+        PlantCollectUI = GameObject.FindObjectOfType<PlantCollectUI>();
+        PlantCollectUI.Initialize();
 
         //TimingGameUI = GameObject.FindObjectOfType<TimingGameUI>();
         //TimingGameUI.Initialize();

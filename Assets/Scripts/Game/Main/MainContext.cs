@@ -4,9 +4,15 @@ public class MainContext
 {
     public bool IsPlaying { get; private set; }
     public int Gold { get; private set; }
+    public string SelectedSeedId { get; private set; }
     public Dictionary<string, int> SeedCounts { get; private set; } = new Dictionary<string, int>();
 
     public MainContext() { }
+
+    public void SetSelectedSeedId(string seedId)
+    {
+        SelectedSeedId = seedId;
+    }
 
     public void AddGold(int value)
     {
@@ -50,7 +56,7 @@ public class MainContext
         {
             SeedCounts.Add(seedId, value);
         }
-        GameSystem.I.Event.InvokeEvent(new SeedUpdated());
+        GameSystem.I.Event.InvokeEvent(new SeedUpdated(seedId));
     }
 
     public bool CanDecreaseSeed(string seedId, int value)
@@ -71,7 +77,7 @@ public class MainContext
         if (result)
         {
             SeedCounts[seedId] -= value;
-            GameSystem.I.Event.InvokeEvent(new SeedUpdated());
+            GameSystem.I.Event.InvokeEvent(new SeedUpdated(seedId));
         }
 
         return result;
