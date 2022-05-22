@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: Bro
   Order: 10
-  DisplayName: "\uD1A0\uB9C8\uD1A0"
+  DisplayName: "\uBE0C\uB85C\uCF5C\uB9AC"
   Rarity: 2
-  GoldReward: 0
-  IconSprite: {fileID: 21300000, guid: 6090e6f9c02d348649a3eb112b479413, type: 3}
-  FirstCollectLine: "(\uC784\uC2DC) \uCD5C\uCD08 \uD68D\uB4DD \uB300\uC0AC"
+  GoldReward: 60
+  IconSprite: {fileID: 21300000, guid: 906581035cdfb4821918d350f346fa30, type: 3}
+  FirstCollectLine: "\uBE44\uD0C0\uBBFC C\uAC00 \uB808\uBAAC\uC758 2\uBC30?"

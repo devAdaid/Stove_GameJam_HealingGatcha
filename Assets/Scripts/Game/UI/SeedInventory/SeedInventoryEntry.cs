@@ -25,6 +25,8 @@ public class SeedInventoryEntry : EntryBase
     [SerializeField]
     private TMP_Text seedNameText;
     [SerializeField]
+    private TMP_Text seedCountText;
+    [SerializeField]
     private Image seedImage;
     [SerializeField]
     private Button button;
@@ -42,7 +44,8 @@ public class SeedInventoryEntry : EntryBase
     {
         seedId = data.SeedId;
         seedImage.sprite = data.SeedSprite;
-        seedNameText.text = $"{data.SeedDisplayName} ({data.CurrentCount}개)";
+        seedNameText.text = $"{data.SeedDisplayName}";
+        seedCountText.text = $"{data.CurrentCount}/{Constants.MAX_SEED_COUNT}";
         rarityImage.sprite = GameSystem.I.StaticData.GetRarityTextSprite(data.Rarity);
     }
 

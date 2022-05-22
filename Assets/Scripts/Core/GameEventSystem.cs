@@ -49,6 +49,12 @@ public class GameEventSystem
                         main.DecreaseSeed(useSeed.SeedId, 1);
                         main.AddGold(plantData.GoldReward);
                         collection.AddPlantCount(useSeed.PlantId);
+
+                        if (collection.GetPlantCount(useSeed.PlantId) == 1)
+                        {
+                            var bonusReward = Constants.GetBonusGoldReward(plantData.Rarity);
+                            main.AddGold(bonusReward);
+                        }
                     }
                 }
             }
@@ -70,13 +76,23 @@ public class GameEventSystem
         {
             if (plantAdded.IsFirst && staticData.TryGetPlant(plantAdded.PlantId, out var plantData))
             {
+                if (plantData.Rarity >= ItemRarity.SR)
+                {
+                    GameSystem.I.Sound.PlayOneShot("SR");
+                }
+                else
+                {
+                    GameSystem.I.Sound.PlayOneShot("Shine");
+                }
                 var bgSprite = staticData.GetRarityEffectBgSprite(plantData.Rarity);
                 ui.FirstCollectEffectUI.Play(plantData.FirstCollectLine, plantAdded.PlantId, bgSprite);
             }
             else
             {
+                GameSystem.I.Sound.PlayOneShot("Tada");
                 SetGachaResultUI(plantAdded.PlantId);
                 ui.GachaResultUI.SetActive(true);
+                ui.GoldUI.SetActive(true);
             }
         }
         else if (evt is OpenSeedPrepareUI prepareUI)
@@ -105,6 +121,11 @@ public class GameEventSystem
         {
             SetGachaResultUI(gachaResultUI.PlantId);
             ui.GachaResultUI.SetActive(true);
+            ui.GoldUI.SetActive(true);
+        }
+        else if (evt is SetGoldUIActive setGoldUIActive)
+        {
+            ui.GoldUI.SetActive(setGoldUIActive.Active);
         }
     }
 
@@ -124,7 +145,7 @@ public class GameEventSystem
             var isAllCollected = seedData.PlantProbabilityTable.Plants.All(x => collection.GetPlantCount(x) > 0);
             var isEnoughGold = main.Gold >= seedData.GoldCost;
             var isNotMaxCount = main.CanAddSeed(seedData.Id);
-            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName,
+            entryDatas.Add(new SeedShopEntryUIData(seedData.Id, seedData.DisplayName, seedData.IconSprite,
                 seedCount, seedData.GoldCost,
                 isNotMaxCount, isEnoughGold,
                 seedData.Rarity, isAllCollected));
@@ -155,7 +176,9 @@ public class GameEventSystem
     {
         if (staticData.TryGetPlant(plantId, out var plantData))
         {
-            var uiData = new GachaResultUIData(plantData.DisplayName, plantData.IconSprite, plantData.Rarity);
+            var isNew = collection.GetPlantCount(plantId) == 1;
+            var bonusReward = isNew ? Constants.GetBonusGoldReward(plantData.Rarity) : 0;
+            var uiData = new GachaResultUIData(plantData.DisplayName, plantData.IconSprite, plantData.Rarity, isNew, plantData.GoldReward, bonusReward);
             ui.GachaResultUI.ApplyData(uiData);
         }
     }

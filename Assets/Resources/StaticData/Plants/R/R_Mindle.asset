@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: Mindle
   Order: 13
-  DisplayName: "\uBBFC\uB4E4"
+  DisplayName: "\uBBFC\uB4E4\uB808"
   Rarity: 2
-  GoldReward: 0
+  GoldReward: 60
   IconSprite: {fileID: 21300000, guid: a081ab750724741d7aa932dceb6bc286, type: 3}
-  FirstCollectLine: "(\uC784\uC2DC) \uCD5C\uCD08 \uD68D\uB4DD \uB300\uC0AC"
+  FirstCollectLine: "\uD638\uD638 \uBD88\uBA74\uC740 \uAD6C\uBA4D\uC774 \uB6AB\uB9AC\uB294"

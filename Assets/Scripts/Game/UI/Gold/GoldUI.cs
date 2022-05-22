@@ -12,6 +12,6 @@ public class GoldUI : UIBase
 
     public void ApplyData(int gold)
     {
-        goldText.text = gold.ToString();
+        goldText.text = $"{gold} G";
     }
 }

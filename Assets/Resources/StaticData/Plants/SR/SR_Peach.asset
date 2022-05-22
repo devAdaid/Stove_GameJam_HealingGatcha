@@ -16,6 +16,6 @@ MonoBehaviour:
   Order: 24
   DisplayName: "\uD53C\uCE58"
   Rarity: 3
-  GoldReward: 0
+  GoldReward: 600
   IconSprite: {fileID: 21300000, guid: 5b3aadd6979224599a3f9edc97f2d7e6, type: 3}
-  FirstCollectLine: "(\uC784\uC2DC) \uCD5C\uCD08 \uD68D\uB4DD \uB300\uC0AC"
+  FirstCollectLine: "\uC774 \uBAB8 \uB4F1\uC7A5"

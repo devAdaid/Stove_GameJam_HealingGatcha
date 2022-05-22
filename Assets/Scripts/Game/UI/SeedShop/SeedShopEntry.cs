@@ -6,6 +6,7 @@ public class SeedShopEntryUIData
 {
     public readonly string SeedId;
     public readonly string SeedDisplayName;
+    public readonly Sprite SeedSprite;
     public readonly int CurrentCount;
     public readonly int GoldCost;
     public readonly bool IsNotMaxCount;
@@ -13,12 +14,13 @@ public class SeedShopEntryUIData
     public readonly ItemRarity Rarity;
     public readonly bool IsAllCollected;
 
-    public SeedShopEntryUIData(string seedId, string seedDisplayName, int currentCount,
+    public SeedShopEntryUIData(string seedId, string seedDisplayName, Sprite seedSprite, int currentCount,
         int goldCost, bool isNotMaxCount, bool isEnoughGold,
         ItemRarity rarity, bool isAllCollected)
     {
         SeedId = seedId;
         SeedDisplayName = seedDisplayName;
+        SeedSprite = seedSprite;
         CurrentCount = currentCount;
         GoldCost = goldCost;
         IsNotMaxCount = isNotMaxCount;
@@ -37,6 +39,8 @@ public class SeedShopEntry : EntryBase
     [SerializeField]
     private TMP_Text goldCostText;
     [SerializeField]
+    private Image seedImage;
+    [SerializeField]
     private Image rarityImage;
     [SerializeField]
     private Button button;
@@ -54,6 +58,7 @@ public class SeedShopEntry : EntryBase
     {
         seedId = data.SeedId;
         seedNameText.text = $"{data.SeedDisplayName}";
+        seedImage.sprite = data.SeedSprite;
 
         if (data.IsNotMaxCount)
         {
@@ -64,7 +69,11 @@ public class SeedShopEntry : EntryBase
             seedCountText.text = $"<color=red>{data.CurrentCount}/{Constants.MAX_SEED_COUNT}</color>";
         }
 
-        if (data.IsEnoughGold)
+        if (data.GoldCost == 0)
+        {
+            goldCostText.text = $"무료 나눔 중!";
+        }
+        else if (data.IsEnoughGold)
         {
             goldCostText.text = $"{data.GoldCost} G";
         }

@@ -83,6 +83,9 @@ public class PlantCollectUI : UIBase
 
     private void SetEntry()
     {
+        leftPageButton.gameObject.SetActive(page > 0);
+        rightPageButton.gameObject.SetActive(page < maxPage);
+
         var showEntryCount = GetShowEntryCount(entryDatas.Count, page);
 
         var leftEntryCount = Mathf.Min(showEntryCount, MAX_PLANT_PER_PAGE);

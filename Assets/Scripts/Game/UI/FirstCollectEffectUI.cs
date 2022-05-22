@@ -34,5 +34,6 @@ public class FirstCollectEffectUI : UIBase
         particleSystem.Play();
         yield return new WaitForSeconds(3.0f);
         SetActive(false);
+        GameSystem.I.Sound.PlayOneShot("Tada");
     }
 }

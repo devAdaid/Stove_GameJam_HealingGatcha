@@ -6,12 +6,20 @@ public class ButtonUtil : MonoBehaviour
     {
         GameSystem.I.Event.InvokeEvent(new OpenPlantCollectUI());
     }
+
     public void OpenSeedShopUI()
     {
         GameSystem.I.Event.InvokeEvent(new OpenSeedShopUI());
     }
+
     public void OpenSeedInventoryUI()
     {
         GameSystem.I.Event.InvokeEvent(new OpenSeedInventoryUI());
+    }
+
+    public void AddGold()
+    {
+        GameSystem.I.Main.AddGold(500);
+        Application.OpenURL("https://www.onstove.com/");
     }
 }

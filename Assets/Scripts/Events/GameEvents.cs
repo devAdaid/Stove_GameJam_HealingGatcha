@@ -91,3 +91,13 @@ public class OpenGachaResultUI : IGameEvent
         PlantId = plantId;
     }
 }
+
+public class SetGoldUIActive : IGameEvent
+{
+    public readonly bool Active;
+
+    public SetGoldUIActive(bool active)
+    {
+        Active = active;
+    }
+}

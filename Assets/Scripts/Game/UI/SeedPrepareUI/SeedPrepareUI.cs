@@ -46,6 +46,7 @@ public class SeedPrepareUI : UIBase
     {
         seedId = data.SeedId;
         seedCount = data.SeedCount;
+        seedImage.gameObject.SetActive(data.SeedCount > 0);
         if (data.SeedCount > 0)
         {
             seedNameText.text = $"{data.SeedDisplayName} ({data.SeedCount}개 남음)";
@@ -82,6 +83,9 @@ public class SeedPrepareUI : UIBase
         gachaButton.gameObject.SetActive(false);
         closeButton.gameObject.SetActive(false);
         seedNameText.transform.parent.gameObject.SetActive(false);
+        GameSystem.I.Event.InvokeEvent(new SetGoldUIActive(false));
+
+        GameSystem.I.Sound.PlayOneShot("Seed");
 
         ItemRarity rarity = plantData.Rarity;
         switch (rarity)

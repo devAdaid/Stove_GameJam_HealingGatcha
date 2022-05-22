@@ -6,6 +6,7 @@ public class GameSystem : PersistentSingleton<GameSystem>
     public TimingGameContext TimingGame;
     public CollectionContext Collection;
     public UIHolder UI;
+    public SoundPlayer Sound;
 
     protected override void Awake()
     {
@@ -17,5 +18,8 @@ public class GameSystem : PersistentSingleton<GameSystem>
         TimingGame = new TimingGameContext();
         Collection = new CollectionContext();
         Event = new GameEventSystem(StaticData, UI, Main, TimingGame, Collection);
+
+        Sound = FindObjectOfType<SoundPlayer>();
+        Sound.Initialize();
     }
 }
