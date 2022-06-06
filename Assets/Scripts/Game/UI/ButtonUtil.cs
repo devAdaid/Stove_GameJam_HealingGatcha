@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using UnityEngine;
 
 public class ButtonUtil : MonoBehaviour
@@ -21,5 +22,10 @@ public class ButtonUtil : MonoBehaviour
     {
         GameSystem.I.Main.AddGold(500);
         Application.OpenURL("https://www.onstove.com/");
+    }
+    
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
