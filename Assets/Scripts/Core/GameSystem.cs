@@ -19,7 +19,7 @@ public class GameSystem : PersistentSingleton<GameSystem>
         Collection = new CollectionContext();
         Event = new GameEventSystem(StaticData, UI, Main, TimingGame, Collection);
 
-        Sound = FindObjectOfType<SoundPlayer>();
+        Sound = FindAnyObjectByType<SoundPlayer>();
         Sound.Initialize();
     }
 }

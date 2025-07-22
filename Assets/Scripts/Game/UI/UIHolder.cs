@@ -14,32 +14,32 @@ public class UIHolder
 
     public UIHolder()
     {
-        StartGameUI = GameObject.FindObjectOfType<StartGameUI>();
+        StartGameUI = GameObject.FindAnyObjectByType<StartGameUI>();
         StartGameUI.Initialize();
         StartGameUI.SetActive(true);
 
-        SeedShopUI = GameObject.FindObjectOfType<SeedShopUI>();
+        SeedShopUI = GameObject.FindAnyObjectByType<SeedShopUI>();
         SeedShopUI.Initialize();
 
-        SeedInventoryUI = GameObject.FindObjectOfType<SeedInventoryUI>();
+        SeedInventoryUI = GameObject.FindAnyObjectByType<SeedInventoryUI>();
         SeedInventoryUI.Initialize();
 
-        GachaResultUI = GameObject.FindObjectOfType<GachaResultUI>();
+        GachaResultUI = GameObject.FindAnyObjectByType<GachaResultUI>();
         GachaResultUI.Initialize();
 
-        SeedPrepareUI = GameObject.FindObjectOfType<SeedPrepareUI>();
+        SeedPrepareUI = GameObject.FindAnyObjectByType<SeedPrepareUI>();
         SeedPrepareUI.Initialize();
 
-        PlantCollectUI = GameObject.FindObjectOfType<PlantCollectUI>();
+        PlantCollectUI = GameObject.FindAnyObjectByType<PlantCollectUI>();
         PlantCollectUI.Initialize();
 
-        GoldUI = GameObject.FindObjectOfType<GoldUI>();
+        GoldUI = GameObject.FindAnyObjectByType<GoldUI>();
         GoldUI.Initialize();
 
-        FirstCollectEffectUI = GameObject.FindObjectOfType<FirstCollectEffectUI>();
+        FirstCollectEffectUI = GameObject.FindAnyObjectByType<FirstCollectEffectUI>();
         FirstCollectEffectUI.Initialize();
 
-        //TimingGameUI = GameObject.FindObjectOfType<TimingGameUI>();
+        //TimingGameUI = GameObject.FindAnyObjectByType<TimingGameUI>();
         //TimingGameUI.Initialize();
     }
 }

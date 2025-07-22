@@ -11,7 +11,7 @@ public abstract class MonoSingleton<T> : MonoBehaviour where T : MonoBehaviour
         {
             if (_instance == null)
             {
-                _instance = FindObjectOfType<T>();
+                _instance = FindAnyObjectByType<T>();
                 if (_instance == null)
                 {
                     T prefab = Resources.LoadAll<T>("Prefabs/Singleton").SingleOrDefault();
